@@ -1220,7 +1220,23 @@ li.grouped { padding-left: 38px; }
     direction: rtl;
 }
 
+.beta{
+    margin-top: -9px;
+}
+.beta > span{
+  padding-left: 62px;
+  font-size: 17px;
+  color: green;
+}
 
+.betasearch{
+    margin-top: -9px;
+}
+.betasearch > span{
+  padding-left: 63px;
+  font-size: 17px;
+  color: green;
+}
 
 /*GeneratePress CSS*/
 #newFooterWrapper{

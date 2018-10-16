@@ -408,6 +408,9 @@ Content = {
             <a target="_blank"style="float right" href="//sobre.arquivo.pt"><i id="safesearchInfo" title="<fmt:message key='images.safeSearch.message'/>" class="ion ion-ios-help"></i></a>          
           </div>   
         </div>
+          <div class="beta">
+            <span>Beta</span>
+          </div>        
       </div>
       </div>           
   <!-- FIM #conteudo-resultado  --> 
