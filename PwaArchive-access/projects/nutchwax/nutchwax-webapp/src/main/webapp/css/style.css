@@ -1221,21 +1221,21 @@ li.grouped { padding-left: 38px; }
 }
 
 .beta{
-    margin-top: -9px;
+    margin-top: -5px;
 }
 .beta > span{
   padding-left: 62px;
   font-size: 17px;
-  color: green;
+  color: #5e8400;
 }
 
 .betasearch{
-    margin-top: -9px;
+    margin-top: -5px;
 }
 .betasearch > span{
   padding-left: 63px;
   font-size: 17px;
-  color: green;
+  color: #5e8400;
 }
 
 /*GeneratePress CSS*/
