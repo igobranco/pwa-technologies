@@ -113,7 +113,7 @@ public class CdxParser {
 			urlEncoded = url; 
 		}
 		  
-		return "http://".concat( "arquivo.pt" ).concat( cdxServer ) 
+		return "https://".concat( "arquivo.pt" ).concat( cdxServer ) 
 					.concat( "url" )
 					.concat( equalOP )
 					.concat( urlEncoded )
