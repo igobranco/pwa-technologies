@@ -65,9 +65,37 @@
   boolean safe =true;
   boolean unsafe = false;
   String safeSearchString ="on";
+  String type = ""; /*Default mimetype*/
+  String size = "all"; /*Default image size*/
+  String tools = "off"; /*Show toolbar*/
   if( request.getParameter("safeSearch") != null && request.getParameter("safeSearch").contains("off") ){
     safeSearchString = "off";
   }
+  if ( request.getParameter("size") != null && request.getParameter("size") != "") {
+          size = request.getParameter("size");
+          if(! "sm".equals(size) && !"md".equals(size) && ! "lg".equals(size)){
+            size = "all";
+          }
+  }
+
+  if ( request.getParameter("type") != null && request.getParameter("type") != "") {
+          type = request.getParameter("type");
+          if(! "jpg".equals(type) && !"png".equals(type) && ! "gif".equals(type) && ! "bmp".equals(type) && ! "webp".equals(type)){
+            type = "";
+          }
+  }
+
+
+
+  if( ! "".equals(type) || ! "all".equals(size) || ! "on".equals(safeSearchString)){
+    tools = "on";
+  }else if ( request.getParameter("tools") != null && request.getParameter("tools") != "") {
+    tools = request.getParameter("tools");
+    if(! "on".equals(tools)){
+      tools = "off";
+    }
+  }
+  
 
   if ( request.getParameter("query") != null ) {
         htmlQueryString = request.getParameter("query").toString();
@@ -93,21 +121,6 @@
                 htmlQueryString += "filetype:"+ request.getParameter("adv_mime");
                 htmlQueryString += " ";
         }
-        if ( request.getParameterValues("size") != null) {
-                String [] sizes = request.getParameterValues("size");
-                String allSizes = "";
-                for( String currentSize: sizes){
-                  allSizes += currentSize + " ";
-                }
-
-                if(!allSizes.contains("icon") || !allSizes.contains("small") || !allSizes.contains("medium")  || !allSizes.contains("large")){ /*the default case is all sizes, no need to add string if all sizes selected*/
-                  for( String currentSize: sizes){
-                    htmlQueryString += "size:"+ currentSize;
-                    htmlQueryString += " ";
-                  }
-                }
-        }
-
         if (request.getParameter("site") != null && request.getParameter("site") != "") {
                 htmlQueryString += "site:";
                 String siteParameter = request.getParameter("site"); //here split hostname and put it to lowercase
@@ -130,26 +143,6 @@
                 }             
                 htmlQueryString += " ";
         }        
-        if (request.getParameter("format") != null && request.getParameter("format") != "" && !request.getParameter("format").equals("all")) {
-                String [] types = request.getParameterValues("format");
-                String allTypes = "";
-                for( String currentType: types){
-                  allTypes += currentType + " ";
-                }
-
-                if(!allTypes.contains("jpeg") || !allTypes.contains("png") || !allTypes.contains("gif")  || !allTypes.contains("tiff")){ /*the default case is all sizes, no need to add string if all sizes selected*/
-                  for( String currentType: types){
-                    htmlQueryString += "type:"+ currentType;
-                    htmlQueryString += " ";
-                  }
-                }
-        }
-        if (request.getParameter("sort") != null && request.getParameter("sort") != "" && !request.getParameter("sort").equals("relevance")) {
-          String sortCriteria = request.getParameter("sort");
-          if(sortCriteria.equals("new") || sortCriteria.equals("old")){
-            htmlQueryString += "sort:" + sortCriteria + " ";
-          }
-        }
     }
   htmlQueryString= StringEscapeUtils.escapeHtml(htmlQueryString);
 
@@ -320,6 +313,14 @@ Content = {
         <div id="search-header">
             <form id="loginForm" action="images.jsp" name="imageSearchForm" method="get">
               <input type="hidden" name="l" value="<%= language %>" />
+              <input id="sizeFormInput" type="hidden" name="size" value="<%=size%>" />
+              <input id="typeFormInput" type="hidden" name="type" value="<%=type%>" />  
+              <input id="toolsFormInput" type="hidden" name="tools" value="<%=tools%>" />  
+
+              <input id="safeSearchFormInput" type="hidden" name="safeSearch" value="<%=safeSearchString%>" /> 
+
+
+
               <fieldset id="pesquisar">
                 <label for="txtSearch">&nbsp;</label>
                 <input class="search-inputtext" type="text" size="15"  value="<%=htmlQueryString%>" onfocus="" onblur="" name="query" id="txtSearch" accesskey="t" />
@@ -344,7 +345,7 @@ Content = {
                     <input type="text" id="dateEnd_top" name="dateEnd" value="<%=dateEndString%>" />
                   </div>
                 </div> 
-                <input id="safeSearchFormInput" style="display: none" name="safeSearch" value="<%=safeSearchString%>" />                
+                              
               </fieldset>
 
 <!--
@@ -390,7 +391,7 @@ Content = {
           </script>
            <span  class="image-span" href="/images.jsp"><em><fmt:message key='images.images'/></em></span>
            <div class="fright">
-             <a class="safe-search">Ferramentas</a>
+             <a class="tools-anchor">Ferramentas</a>
           </div>
           <div id ="tools">
               <select id="sizeSelect" class="safe-search" >
@@ -399,6 +400,14 @@ Content = {
                 <option value="md" class="safe-search-option">Médias</option>
                 <option value="lg" class="safe-search-option">Grandes</option>                 
               </select>
+              <select id="typeSelect" class="safe-search" >
+                <option value="" class="safe-search-option">Formato</option> 
+                <option value="jpg" class="safe-search-option">JPG</option>
+                <option value="png" class="safe-search-option">PNG</option>
+                <option value="gif" class="safe-search-option">GIF</option>
+                <option value="bmp" class="safe-search-option">BMP</option>
+                <option value="webp" class="safe-search-option">WEBP</option>
+              </select>              
               <select id="safeSearch" class="safe-search" >
               <% if (safeSearchString.equals("on")) { %>                
                 <option selected value="on" class="safe-search-option"><fmt:message key='images.safeOnLabel'/></option>
@@ -409,6 +418,30 @@ Content = {
               <%}%>                              
               </select>
             <script type="text/javascript">
+            if($('#toolsFormInput').attr('value') === 'on'){
+              $('#tools').show();  
+            }
+            $("#sizeSelect").val('<%=size%>');
+            if('<%=type%>'!=='')
+              $("#typeSelect").val('<%=type%>');
+            $('.tools-anchor').on('click', function(e) {
+              $("#tools").slideToggle('slow', function(){
+                if($("#tools").is(":visible")){
+                   $('#toolsFormInput').attr('value', 'on');
+                }
+                else{
+                  $('#toolsFormInput').attr('value', 'off');
+                }
+              });            
+            });
+            $( "#sizeSelect" ).change(function() {
+              $('#sizeFormInput').attr('value', $('#sizeSelect').find(":selected").attr("value"));
+              $('#btnSubmit').click();
+            });
+            $( "#typeSelect" ).change(function() {
+              $('#typeFormInput').attr('value', $('#typeSelect').find(":selected").attr("value"));
+              $('#btnSubmit').click();
+            });                                        
             $( "#safeSearch" ).change(function() {
               $('#safeSearchFormInput').attr('value', $('#safeSearch').find(":selected").attr("value"));
               $('#btnSubmit').click();

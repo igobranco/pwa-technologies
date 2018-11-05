@@ -1232,7 +1232,20 @@ li.grouped { padding-left: 38px; }
 .safe-search-option{
  }
 
+.tools-anchor, .tools-anchor:visited{
+    font-size: 15px;
+    color: grey;
+    vertical-align: top;
+}
+.tools-anchor:hover{
+    color: black;
+    cursor: pointer;
+}
+
+
+
 #tools{
+    display:none;
     margin-top: 8px;
 }
 
