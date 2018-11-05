@@ -955,6 +955,7 @@ li.grouped { padding-left: 38px; }
 	text-shadow:0px 1px 0px #ffffff;
 	text-align: center;
 	height: 25px;
+    width: 60px;
     vertical-align: middle;
     display: inline-block;
     text-decoration: none;
@@ -1211,6 +1212,12 @@ li.grouped { padding-left: 38px; }
 .image-anchor:hover{
     color: black;
 }
+
+#width_tmp_select{
+  display : none;
+}
+
+
 .fright{
     float: right;
 }

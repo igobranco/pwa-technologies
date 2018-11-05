@@ -256,6 +256,10 @@ function searchImages(startIndex){
 }
 </script>
 <script type="text/javascript">
+  var sizeVar = "<%=size%>";
+  var typeVar = "<%=type%>";
+</script>
+<script type="text/javascript">
 Content = {
     months: 
     {  '01': "<fmt:message key="month.0" />",
@@ -417,13 +421,23 @@ Content = {
                 <option  value="on" class="safe-search-option"><fmt:message key='images.safeOnLabel'/></option>
               <%}%>                              
               </select>
+              <select id="width_tmp_select">
+                <option class="safe-search-option" id="width_tmp_option"></option>
+              </select>              
             <script type="text/javascript">
             if($('#toolsFormInput').attr('value') === 'on'){
               $('#tools').show();  
             }
             $("#sizeSelect").val('<%=size%>');
-            if('<%=type%>'!=='')
+            $("#width_tmp_option").html($('#sizeSelect option:selected').text()); 
+            $("#sizeSelect").width($("#width_tmp_select").width()+15);
+            $("#width_tmp_option").html($('#safeSearch option:selected').text()); 
+            $("#safeSearch").width($("#width_tmp_select").width()+30);  
+            if('<%=type%>'!==''){
               $("#typeSelect").val('<%=type%>');
+              $("#width_tmp_option").html($('#typeSelect option:selected').text()); 
+              $("#typeSelect").width($("#width_tmp_select").width()+10);              
+            }
             $('.tools-anchor').on('click', function(e) {
               $("#tools").slideToggle('slow', function(){
                 if($("#tools").is(":visible")){
@@ -436,14 +450,20 @@ Content = {
             });
             $( "#sizeSelect" ).change(function() {
               $('#sizeFormInput').attr('value', $('#sizeSelect').find(":selected").attr("value"));
+              $("#width_tmp_option").html($('#sizeSelect option:selected').text()); 
+              $(this).width($("#width_tmp_select").width()+15);                
               $('#btnSubmit').click();
             });
             $( "#typeSelect" ).change(function() {
               $('#typeFormInput').attr('value', $('#typeSelect').find(":selected").attr("value"));
+              $("#width_tmp_option").html($('#typeSelect option:selected').text()); 
+              $(this).width($("#width_tmp_select").width()+10);                 
               $('#btnSubmit').click();
             });                                        
             $( "#safeSearch" ).change(function() {
               $('#safeSearchFormInput').attr('value', $('#safeSearch').find(":selected").attr("value"));
+              $("#width_tmp_option").html($('#safeSearch option:selected').text()); 
+              $(this).width($("#width_tmp_select").width()+30);              
               $('#btnSubmit').click();
             });              
             </script>            
