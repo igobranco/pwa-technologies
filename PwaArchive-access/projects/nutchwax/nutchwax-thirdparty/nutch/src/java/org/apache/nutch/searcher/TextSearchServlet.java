@@ -115,7 +115,7 @@ public class TextSearchServlet extends HttpServlet {
   
   static {
     NS_MAP.put( "serviceName" , "Arquivo.pt - the Portuguese web-archive" );
-    NS_MAP.put( "link" , "http://arquivo.pt" ); 
+    NS_MAP.put( "link" , "https://arquivo.pt" ); 
   }  
   
   private static String[ ]  fieldsReponse = {"versionID", "title", "originalURL", "linkToArchive",
@@ -135,7 +135,7 @@ public class TextSearchServlet extends HttpServlet {
       functions = PwaFunctionsWritable.parse( this.conf.get( Global.RANKING_FUNCTIONS ) );            
       nQueryMatches=Integer.parseInt( this.conf.get( Global.MAX_FULLTEXT_MATCHES_RANKED ) );
       
-      collectionsHost = this.conf.get( "wax.host", "examples.com" );
+      collectionsHost = this.conf.get( "wax.host", "arquivo.pt/wayback" );
 	  TimeZone zone = TimeZone.getTimeZone( "GMT" );
 	  FORMAT.setTimeZone( zone );
 	  
@@ -763,10 +763,10 @@ public class TextSearchServlet extends HttpServlet {
 		  
 		  if( itemcdx.getUrl( ) != null ) {
 			  //Lucene index format
-			  String target = "http://"+ collectionsHost +"/"+ FORMAT.format( datet ).toString()  +"/"+ itemcdx.getUrl( );
+			  String target = "https://"+ collectionsHost +"/"+ FORMAT.format( datet ).toString()  +"/"+ itemcdx.getUrl( );
 			  if( FieldExists( fields , "linkToArchive" ) )
 				  item.setLink( target );
-			  String urlNoFrame = "http://".concat( domainService ).concat( noFrame ).concat( "/" ).concat( FORMAT.format( datet ).toString( ) ).concat( "/" ).concat( itemcdx.getUrl( ) );
+			  String urlNoFrame = "https://".concat( domainService ).concat( noFrame ).concat( "/" ).concat( FORMAT.format( datet ).toString( ) ).concat( "/" ).concat( itemcdx.getUrl( ) );
 			  String urlEncode = "";
 			  try{
 				  urlEncode = URLEncoder.encode( urlNoFrame , "UTF-8" );
@@ -774,7 +774,7 @@ public class TextSearchServlet extends HttpServlet {
 				  LOG.error( e );
 				  continue;
 			  }
-			  String screenShotLink = "http://".concat( domainService ).concat( screenShotURL ).concat( "=" ).concat( urlEncode );
+			  String screenShotLink = "https://".concat( domainService ).concat( screenShotURL ).concat( "=" ).concat( urlEncode );
 			  if( FieldExists( fields , "linkToScreenshot" ) )
 				  item.setScreenShotLink( screenShotLink );
 			  if( FieldExists( fields , "linkToNoFrame" ) )
@@ -805,7 +805,7 @@ public class TextSearchServlet extends HttpServlet {
 		  }
 		  LOG.info( "[linkToMetadata] ID = " + id );
 		  if( FieldExists( fields , "linkToMetadata" ) ) {
-			  String linkToMetadata = "http://".concat( domainService ).concat( infoMetadata ).concat( "=" ).concat( urlEncoded );
+			  String linkToMetadata = "https://".concat( domainService ).concat( infoMetadata ).concat( "=" ).concat( urlEncoded );
 			  item.setLinkToMetadata( linkToMetadata );
 			  LOG.info( "Yes linkToMetadata = " + item.getLinkToMetadata( ) );
 		  } else {
@@ -858,7 +858,7 @@ public class TextSearchServlet extends HttpServlet {
     		  HitDetails detail = details;
     		  
     		  if( FieldExists( fields , "linkToExtractedText" ) ) {
-    			  String textContent = "http://".concat( domainService ).concat( textExtracted ).concat( "=" ).concat( urlEncoded );
+    			  String textContent = "https://".concat( domainService ).concat( textExtracted ).concat( "=" ).concat( urlEncoded );
     			  item.setParseText( textContent );
     		  } 
     		  
@@ -1025,9 +1025,9 @@ public class TextSearchServlet extends HttpServlet {
     		
             if( url != null ) {
             	// Lucene index format
-            	String infoIndex = "http://" + collectionsHost + "/id" + hit.getIndexDocNo( ) + "index" + hit.getIndexNo( );
+            	String infoIndex = "https://" + collectionsHost + "/id" + hit.getIndexDocNo( ) + "index" + hit.getIndexNo( );
             	LOG.debug( "Index Information " + infoIndex );
-            	String target = "http://"+ collectionsHost +"/"+ FORMAT.format(datet).toString()  +"/"+ url;
+            	String target = "https://"+ collectionsHost +"/"+ FORMAT.format(datet).toString()  +"/"+ url;
             	if( FieldExists( fields , "linkToArchive" ) )
             		item.setLink( target );
             }
@@ -1064,7 +1064,7 @@ public class TextSearchServlet extends HttpServlet {
             	item.setCollection( collection );
             
             if( url != null ) {
-            	String urlNoFrame = "http://".concat( domainService ).concat( noFrame ).concat( "/" ).concat( FORMAT.format( datet ).toString( ) ).concat( "/" ).concat( url );
+            	String urlNoFrame = "https://".concat( domainService ).concat( noFrame ).concat( "/" ).concat( FORMAT.format( datet ).toString( ) ).concat( "/" ).concat( url );
                 String urlEncode = "";
                 try{
             		urlEncode = URLEncoder.encode( urlNoFrame , "UTF-8" );
@@ -1072,7 +1072,7 @@ public class TextSearchServlet extends HttpServlet {
             		LOG.error( e );
             		continue;
             	}
-            	String screenShotLink = "http://".concat( domainService ).concat( screenShotURL ).concat( "=" ).concat( urlEncode );
+            	String screenShotLink = "https://".concat( domainService ).concat( screenShotURL ).concat( "=" ).concat( urlEncode );
             	if( FieldExists( fields , "linkToScreenshot" ) )
             		item.setScreenShotLink( screenShotLink );
             	if( FieldExists( fields , "linkToNoFrame" ) )
@@ -1112,12 +1112,12 @@ public class TextSearchServlet extends HttpServlet {
             		}  
               		
                 	if( FieldExists( fields , "linkToExtractedText" ) ) {
-                		String textContent = "http://".concat( domainService ).concat( textExtracted ).concat( "=" ).concat( urlEncoded );
+                		String textContent = "https://".concat( domainService ).concat( textExtracted ).concat( "=" ).concat( urlEncoded );
                 		item.setParseText( textContent );
                 	} 
                 	
                 	if( FieldExists( fields , "linkToMetadata" ) ) {
-                		String linkToMetadata = "http://".concat( domainService ).concat( infoMetadata ).concat( "=" ).concat( urlEncoded );
+                		String linkToMetadata = "https://".concat( domainService ).concat( infoMetadata ).concat( "=" ).concat( urlEncoded );
                 		item.setLinkToMetadata( linkToMetadata );
                 	} 
                 }
