@@ -35,9 +35,6 @@
     document.write('<a href="/images.jsp?l=<%=language%>&query='+ $('.search-inputtext').attr("value")+'&dateStart='+$('#dateStart_top').attr("value")+'&dateEnd='+$('#dateEnd_top').attr("value")+'" class="image-anchor"><fmt:message key='images.images'/></a>')
   </script>
 </div>
-<div class="betasearch">
-  <span>Beta</span>
-</div>
 
 <%-- Show tip if present --%>
 <%--

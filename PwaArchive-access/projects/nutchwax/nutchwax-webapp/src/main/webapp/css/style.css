@@ -1165,26 +1165,30 @@ li.grouped { padding-left: 38px; }
 
 .search-anchor, .search-anchor:visited{ 
     text-decoration: none; 
-    color: #005db4; 
-    font-size: 17px; 
+    color: grey; 
+    font-size: 15px; 
     margin-right: 15px; 
-    font-size: 17px; 
     padding-right: 4px;
     font-style: normal;
 }
+.search-anchor:hover{
+    color: black;
+}
+
 .search-span{ 
     text-decoration: none;
-    font-size: 17px;
+    font-size: 15px;
     margin-right: 15px;
-    font-size: 17px;
     font-style: normal;
     border-top: 3px solid lightblue;
     padding-top: 4px;
     padding-right: 4px;
+    color: #005db4
 }
 .image-span{
+    color: #005db4;
     text-decoration: none;  
-    font-size: 17px; 
+    font-size: 15px; 
     padding-top: 4px; 
     text-decoration: none; 
     padding-left: 5px; 
@@ -1195,8 +1199,8 @@ li.grouped { padding-left: 38px; }
 }
 .image-anchor, .image-anchor:visited{
     text-decoration: none;  
-    color: #005db4; 
-    font-size: 17px; 
+    color: grey; 
+    font-size: 15px; 
     padding-top: 4px; 
     text-decoration: none; 
     padding-left: 5px; 
@@ -1204,20 +1208,32 @@ li.grouped { padding-left: 38px; }
     padding-top: 4px; 
     margin-right: -15px;
 }
+.image-anchor:hover{
+    color: black;
+}
 .fright{
     float: right;
 }
-.safe-search{
-    font-size: 17px; 
-    color: grey;  
-    text-align-last: right; 
-    margin-right: 10px; 
-    vertical-align: top;
+.fleft{
+    float: left;
 }
+.safe-search, .safe-search:visited{
+    font-size: 15px;
+    color: grey;
+    vertical-align: top;
+    margin-left: -4px;
+    margin-right: 10px;
+}
+.safe-search:hover{
+    color: black;
+    cursor: pointer;
+}
+
 .safe-search-option{
-    text-align:right;  
-    float: right; 
-    direction: rtl;
+ }
+
+#tools{
+    margin-top: 8px;
 }
 
 .beta{

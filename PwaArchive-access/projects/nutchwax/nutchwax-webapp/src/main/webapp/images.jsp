@@ -383,14 +383,23 @@ Content = {
         <div id="first-column">
           &nbsp;
         </div>
-        <div id="second-column">
+        <div id="second-column">        
         <div id="resultados">
           <script type="text/javascript">
             document.write('<a href="/search.jsp?l=<%=language%>&query='+ $('.search-inputtext').attr("value")+'&dateStart='+$('#dateStart_top').attr("value")+'&dateEnd='+$('#dateEnd_top').attr("value")+'" class="search-anchor">Web</a>')
           </script>
            <span  class="image-span" href="/images.jsp"><em><fmt:message key='images.images'/></em></span>
            <div class="fright">
-             <select id="safeSearch" class="safe-search" >
+             <a class="safe-search">Ferramentas</a>
+          </div>
+          <div id ="tools">
+              <select id="sizeSelect" class="safe-search" >
+                <option value="all" class="safe-search-option">Tamanho</option> 
+                <option value="sm" class="safe-search-option">Pequenas</option>
+                <option value="md" class="safe-search-option">Médias</option>
+                <option value="lg" class="safe-search-option">Grandes</option>                 
+              </select>
+              <select id="safeSearch" class="safe-search" >
               <% if (safeSearchString.equals("on")) { %>                
                 <option selected value="on" class="safe-search-option"><fmt:message key='images.safeOnLabel'/></option>
                 <option value="off" class="safe-search-option"><fmt:message key='images.safeOffLabel'/></option>
@@ -398,19 +407,15 @@ Content = {
                 <option selected value="off" class="safe-search-option"><fmt:message key='images.safeOffLabel'/></option>
                 <option  value="on" class="safe-search-option"><fmt:message key='images.safeOnLabel'/></option>
               <%}%>                              
-            </select>
+              </select>
             <script type="text/javascript">
             $( "#safeSearch" ).change(function() {
               $('#safeSearchFormInput').attr('value', $('#safeSearch').find(":selected").attr("value"));
               $('#btnSubmit').click();
             });              
-            </script>
-            <a target="_blank"style="float right" href="//sobre.arquivo.pt"><i id="safesearchInfo" title="<fmt:message key='images.safeSearch.message'/>" class="ion ion-ios-help"></i></a>          
+            </script>            
           </div>   
-        </div>
-          <div class="beta">
-            <span>Beta</span>
-          </div>        
+        </div>    
       </div>
       </div>           
   <!-- FIM #conteudo-resultado  --> 
@@ -425,7 +430,7 @@ Content = {
   &nbsp;
 </div>
 <div id="second-column" style="width: 100%; background-color: #D8DBDF; padding-bottom: 10%">
-
+<img src="/img/experimental.png" class="fleft">  
 
 
 
