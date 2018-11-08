@@ -566,6 +566,11 @@ hr { border-top: 1px solid #cccccc; clear: both; display: block;  padding-bottom
 #conteudo-pesquisa fieldset input[type="text"], fieldset input[type="url"] { background-color: #ffffff; border: 1px solid #949494; height: 22px; width: 320px; font-size: 1.2em; }
 
 #conteudo-pesquisa #labelDateEnd { padding: 4px 11px 0; text-align: center; vertical-align: middle; width: 22px; }
+
+
+.advancedImageSearchSelect{width: 250px; background-color: #ffffff; border: 1px solid #949494; font-size: 1.2em;}
+.advancedImageSearchSelect  #num-result { border: 1px solid #949494; font-size: 1.2em; }
+
 #conteudo-pesquisa #sort, #formatType, #num-result { border: 1px solid #949494; font-size: 1.2em; }
 #conteudo-pesquisa #sort, #formatType { width: 224px; background-color: #ffffff; }
 #conteudo-pesquisa #sort, #imagesFormatType, #num-result { border: 1px solid #949494; font-size: 1.2em; }
@@ -588,7 +593,7 @@ hr { border-top: 1px solid #cccccc; clear: both; display: block;  padding-bottom
 
 #conteudo-resultado #second-column { width: 619px; float: left; }
 
-#conteudo-resultado #resultados { border-top: 1px solid #cccccc; padding: 5px 0 8px; color: #464646; font-size: 1.2em; }
+#conteudo-resultado #resultados { border-bottom: 1px solid #cccccc; padding: 5px 0 8px; color: #464646; font-size: 1.2em; }
 #conteudo-resultado #resultados-url { background-color: #ebf7ff; border-top: 1px solid #add4ff; padding: 3px 0 6px; text-align: center; }
 #conteudo-resultado #resultados-url a { text-decoration: underline; font-size: 1.0em; }
 
@@ -1175,14 +1180,17 @@ li.grouped { padding-left: 38px; }
 .search-anchor:hover{
     color: black;
 }
+.no-border{
+    border: none!important;
+}
 
 .search-span{ 
     text-decoration: none;
     font-size: 15px;
     margin-right: 15px;
     font-style: normal;
-    border-top: 3px solid lightblue;
-    padding-top: 4px;
+    border-bottom: 3px solid lightblue;
+    padding-bottom: 7px;
     padding-right: 4px;
     color: #005db4
 }
@@ -1190,12 +1198,10 @@ li.grouped { padding-left: 38px; }
     color: #005db4;
     text-decoration: none;  
     font-size: 15px; 
-    padding-top: 4px; 
-    text-decoration: none; 
     padding-left: 5px; 
     padding-right: 5px;   
-    border-top: 3px solid lightblue; 
-    padding-top: 4px; 
+    border-bottom: 3px solid lightblue; 
+    padding-bottom: 7px; 
     margin-right: -15px;
 }
 .image-anchor, .image-anchor:visited{

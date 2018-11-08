@@ -396,17 +396,18 @@ Content = {
            <span  class="image-span" href="/images.jsp"><em><fmt:message key='images.images'/></em></span>
            <div class="fright">
              <a class="tools-anchor">Ferramentas</a>
-          </div>
+          </div>  
+        </div> 
           <div id ="tools">
               <select id="sizeSelect" class="safe-search" >
-                <option value="all" class="safe-search-option">Tamanho</option> 
-                <option value="sm" class="safe-search-option">Pequenas</option>
-                <option value="md" class="safe-search-option">Médias</option>
-                <option value="lg" class="safe-search-option">Grandes</option>                 
+                <option selected value="all" class="safe-search-option"><fmt:message key='images.tools.size'/></option> 
+                <option value="sm" class="safe-search-option"><fmt:message key='images.tools.sm'/></option>
+                <option value="md" class="safe-search-option"><fmt:message key='images.tools.md'/></option>
+                <option value="lg" class="safe-search-option"><fmt:message key='images.tools.lg'/></option>                 
               </select>
               <select id="typeSelect" class="safe-search" >
-                <option value="" class="safe-search-option">Formato</option> 
-                <option value="jpg" class="safe-search-option">JPG</option>
+                <option selected value="" class="safe-search-option"><fmt:message key='images.tools.format'/></option> 
+                <option value="jpg" class="safe-search-option">JPEG</option>
                 <option value="png" class="safe-search-option">PNG</option>
                 <option value="gif" class="safe-search-option">GIF</option>
                 <option value="bmp" class="safe-search-option">BMP</option>
@@ -429,14 +430,19 @@ Content = {
               $('#tools').show();  
             }
             $("#sizeSelect").val('<%=size%>');
-            $("#width_tmp_option").html($('#sizeSelect option:selected').text()); 
-            $("#sizeSelect").width($("#width_tmp_select").width()+15);
-            $("#width_tmp_option").html($('#safeSearch option:selected').text()); 
-            $("#safeSearch").width($("#width_tmp_select").width()+30);  
+            if($('#sizeSelect option:selected').text() !== ''){
+              $("#width_tmp_option").html($('#sizeSelect option:selected').text()); 
+              if($("#width_tmp_select").width() > 0 )
+                $("#sizeSelect").width($("#width_tmp_select").width()+25);
+            }
+            $("#width_tmp_option").html($('#safeSearch option:selected').text());
+            if($("#width_tmp_select").width() > 0 ) 
+              $("#safeSearch").width($("#width_tmp_select").width()+43);  
             if('<%=type%>'!==''){
               $("#typeSelect").val('<%=type%>');
               $("#width_tmp_option").html($('#typeSelect option:selected').text()); 
-              $("#typeSelect").width($("#width_tmp_select").width()+10);              
+              if($("#width_tmp_select").width() > 0 )
+                $("#typeSelect").width($("#width_tmp_select").width()+18);              
             }
             $('.tools-anchor').on('click', function(e) {
               $("#tools").slideToggle('slow', function(){
@@ -451,24 +457,23 @@ Content = {
             $( "#sizeSelect" ).change(function() {
               $('#sizeFormInput').attr('value', $('#sizeSelect').find(":selected").attr("value"));
               $("#width_tmp_option").html($('#sizeSelect option:selected').text()); 
-              $(this).width($("#width_tmp_select").width()+15);                
+              $(this).width($("#width_tmp_select").width()+25);                
               $('#btnSubmit').click();
             });
             $( "#typeSelect" ).change(function() {
               $('#typeFormInput').attr('value', $('#typeSelect').find(":selected").attr("value"));
               $("#width_tmp_option").html($('#typeSelect option:selected').text()); 
-              $(this).width($("#width_tmp_select").width()+10);                 
+              $(this).width($("#width_tmp_select").width()+18);                 
               $('#btnSubmit').click();
             });                                        
             $( "#safeSearch" ).change(function() {
               $('#safeSearchFormInput').attr('value', $('#safeSearch').find(":selected").attr("value"));
               $("#width_tmp_option").html($('#safeSearch option:selected').text()); 
-              $(this).width($("#width_tmp_select").width()+30);              
+              $(this).width($("#width_tmp_select").width()+43);              
               $('#btnSubmit').click();
             });              
             </script>            
-          </div>   
-        </div>    
+          </div>            
       </div>
       </div>           
   <!-- FIM #conteudo-resultado  --> 
@@ -487,7 +492,7 @@ Content = {
 
 
 
-<div id="resultados" style="width: 100%"></div>
+<div id="resultados" style="width: 100%" class="no-border"></div>
 
 
 
